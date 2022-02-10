@@ -2,16 +2,13 @@ package com.techelevator;
 
 import java.math.BigDecimal;
 
-public class Chips extends Item {
-
-
-    public Chips(String slot, String productName, BigDecimal price) {
+public class Gum extends Item{
+    public Gum(String slot, String productName, BigDecimal price) {
         super(slot, productName, price);
-
     }
 
     @Override
     public String getSound() {
-        return "Crunch Crunch, Yum!";
+        return "Chew Chew, Yum!";
     }
 }

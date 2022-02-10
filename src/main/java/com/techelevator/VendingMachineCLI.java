@@ -9,8 +9,9 @@ public class VendingMachineCLI {
 	public VendingMachineCLI() {
 
 	}
+
 	private Scanner userInput = new Scanner(System.in);
-	private String[][] inventory = new String[16][4];
+	public Inventory inventory= new Inventory();
 
 	public static void main(String[] args) {
 
@@ -21,8 +22,8 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
+		inventory.loadInventory();
 
-		String[][] inventory = loadInventory();
 		displayWelcomeMessage();
 		mainMenuUI();
 
@@ -49,7 +50,7 @@ public class VendingMachineCLI {
 			String userChoice = userInput.nextLine();
 			switch (userChoice) {
 				case "1":
-					displayInventory();
+					inventory.displayInventory();
 					System.out.println("choice 1");
 					//isValidChoice = true;
 					break;
@@ -106,33 +107,7 @@ public class VendingMachineCLI {
 					break;
 			}
 		}
-		}
-	public String[][] loadInventory(){
-		File fileToRead= new File("VendingMachine.txt");
-		//String[][] inventory = new String[16][4];
-		try(Scanner inventoryFile = new Scanner(fileToRead)){
-			int rowCounter = 0;
-			while (inventoryFile.hasNextLine()) {
-				String lineOfText = inventoryFile.nextLine();
-				String[] itemLine = lineOfText.split("\\|");
-				for (int i = 0; i < itemLine.length; i++) {
-					inventory[rowCounter][i] = itemLine[i];
-				}
-				rowCounter++;
-			}
-		}catch(FileNotFoundException exception){
-			System.out.println("File not found");
-		}
-		return inventory;
-	}
 
-	public void displayInventory(){
-		for (int i = 0; i < 4; i++){
-			for (int j = 0; j < 16; j++) {
-				System.out.println(inventory[j][i]);
-			}
-			
-		}
 		//System.out.println(inventory);
 	}
 

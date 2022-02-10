@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Chips extends Item {
 
 
-    public Chips(String slot, String productName, BigDecimal price) {
+    public Chips(String slot, String productName, String price) {
         super(slot, productName, price);
 
     }

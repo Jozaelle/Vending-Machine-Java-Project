@@ -10,10 +10,10 @@ public class Item {
     private int quantity;
     private String sound;
 
-    public Item(String slot, String productName, BigDecimal price){
+    public Item(String slot, String productName, String price){
         this.slot=slot;
         this.productName= productName;
-        this.price = price;
+        this.price = new BigDecimal(price);
         this.quantity = 5;
     }
 

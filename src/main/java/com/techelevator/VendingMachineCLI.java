@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -7,7 +9,7 @@ public class VendingMachineCLI {
 	public VendingMachineCLI() {
 
 	}
-
+	private Scanner userInput = new Scanner(System.in);
 	public static void main(String[] args) {
 
 		VendingMachineCLI cli = new VendingMachineCLI();
@@ -17,23 +19,23 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
-		Scanner userInput = new Scanner(System.in);
 
+		loadInventory();
 		displayWelcomeMessage();
-		mainMenuUI(userInput);
+		mainMenuUI();
 
 		// ToDo - Add Code here to show menu, etc.
 		userInput.close();
 	}
 
-	public void displayWelcomeMessage(){
+	public void displayWelcomeMessage() {
 		System.out.println("*************************************************************");
 		System.out.println("*  Welcome to our vending machine application.");
 		System.out.println("*************************************************************");
 		System.out.println("");
 	}
 
-	public void mainMenuUI(Scanner userInput) {
+	public void mainMenuUI() {
 
 
 		boolean isValidChoice = false;
@@ -50,7 +52,7 @@ public class VendingMachineCLI {
 					isValidChoice = true;
 					break;
 				case "2":
-					// display sub menu
+					subMenu();
 					System.out.println("choice 2");
 					isValidChoice = true;
 					break;
@@ -69,13 +71,46 @@ public class VendingMachineCLI {
 					break;
 			}
 		}
-		System.out.println("after while loop");
-//		if (userChoice.equals("1")){
-//			// call displayItem
-//		} else if ( userChoice.equals("2")){
-//			//display sub
-//		} else if
 
 	}
 
+	public void subMenu() {
+		boolean isValidChoice = false;
+		System.out.println("1. Feed Money");
+		System.out.println("2. Select Product");
+		System.out.println("3. Finish Transaction");
+
+		String userChoice = userInput.nextLine();
+		switch (userChoice) {
+			case "1":
+				// call Feed Money
+				System.out.println("choice sub.1");
+				isValidChoice = true;
+				break;
+			case "2":
+				// display sub menu
+				System.out.println("choice sub.2");
+				isValidChoice = true;
+				break;
+			case "3":
+				// exit program
+				System.out.println("choice sub.3");
+				isValidChoice = true;
+				break;
+
+			default:
+				System.out.println("Not a valid entry");
+				break;
+		}
+
+		}
+	public void loadInventory(){
+		File fileToRead= new File("VendingMachine.txt");
+
+		try(Scanner inventoryFile = new Scanner(fileToRead)){
+
+		}catch(FileNotFoundException exception){
+			System.out.println("File not found");
+		}
+	}
 }

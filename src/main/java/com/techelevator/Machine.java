@@ -70,9 +70,11 @@ public class Machine {
         return balance;
     }
 
-    public void selectProduct(){
-
+    public void selectProduct(String slotChosen){
+        //return balance
+        //get product
     }
+
 }
 
 

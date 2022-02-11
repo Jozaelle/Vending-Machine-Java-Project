@@ -17,7 +17,6 @@ public class VendingMachineCLI {
 	}
 
 
-
 	public static void main(String[] args) {
 
 		VendingMachineCLI cli = new VendingMachineCLI();
@@ -113,7 +112,7 @@ public class VendingMachineCLI {
 	private void feedMoney() {
 		boolean isWholeNumber = false;
 		double tempDouble = 0;
-		while(!isWholeNumber) {
+		while (!isWholeNumber) {
 			System.out.println("How much would you like to deposit (whole bills only): ");
 			String userChoice = userInput.nextLine();
 			tempDouble = Double.parseDouble(userChoice);
@@ -125,22 +124,34 @@ public class VendingMachineCLI {
 		}
 		BigDecimal tempBigDecimal = new BigDecimal(tempDouble);
 		vm1.depositMoney(tempBigDecimal);
-		System.out.println("balance: "+ vm1.getBalance());
+		System.out.println("balance: " + vm1.getBalance());
 		//isValidChoice = true;
 	}
 
 	private void selectProduct() {
-		System.out.println("Enter Slot code: ");
-		String userChoice = userInput.nextLine();
+
 		// run loop through inventory to compare userInput to item.getSlot
 		//		if equal, run selectProduct with lowercase check
 		//		if not equal, ask again
 		// vm1.selectProduct();
 		boolean isValidSlot = false;
-		while (!isValidSlot){
-			if (userChoice.equalsIgnoreCase(vm1.getInventory().get))
+		String userChoice= "";
+		while (!isValidSlot) {
+			System.out.println("Enter Slot code: ");
+			userChoice = userInput.nextLine();
+			for (Item var : vm1.getInventory()) {
+				if (userChoice.equalsIgnoreCase(var.getSlot())) {
+					isValidSlot = true;
+
+				}
+			}
+			if(!isValidSlot){
+				System.out.println("Not Valid. Pick again.");
+			}
 		}
-		System.out.println("balance: "+ vm1.getBalance());
+		vm1.selectProduct(userChoice);
+		System.out.println("balance: " + vm1.getBalance());
 		System.out.println("choice sub.2");
 	}
+
 }

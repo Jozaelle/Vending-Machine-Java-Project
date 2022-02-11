@@ -10,6 +10,7 @@ public class Machine {
 
     private List<Item> inventoryB = new ArrayList<>();
     private File inputFile;
+    // inputFile is empty bucket that can take in any file put in and use it to load the inventory.
 
     public Machine(File inputFile){
         this.inputFile = inputFile;
@@ -29,13 +30,13 @@ public class Machine {
                         inventoryB.add(new Chips(itemLine[0],itemLine[1], itemLine[2]));
                         break;
                     case "Candy":
-                        //inventoryB[counter]=new Candy(itemLine [0],itemLine[1], itemLine [2]);
+                        inventoryB.add(new Candy(itemLine [0],itemLine[1], itemLine [2]));
                         break;
                     case "Drink":
-                        //inventoryB[counter]=new Drinks(itemLine [0],itemLine[1], itemLine [2]);
+                        inventoryB.add(new Drinks(itemLine [0],itemLine[1], itemLine [2]));
                         break;
                     case "Gum":
-                        //inventoryB[counter]=new Gum(itemLine [0],itemLine[1], itemLine [2]);
+                        inventoryB.add(new Gum(itemLine [0],itemLine[1], itemLine [2]));
                         break;
                     default:
                         break;

@@ -36,4 +36,10 @@ public class Item {
     public String getSound() {
         return sound;
     }
+
+    @Override
+    public String toString() {
+        return  getSlot() + " " + getProductName() + " "+ getPrice() ;
+    }
 }
+

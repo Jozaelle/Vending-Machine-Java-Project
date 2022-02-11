@@ -12,6 +12,9 @@ public class Chips extends Item {
 
     @Override
     public String getSound() {
+
         return "Crunch Crunch, Yum!";
     }
+
+
 }

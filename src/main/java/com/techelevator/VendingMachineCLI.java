@@ -132,11 +132,14 @@ public class VendingMachineCLI {
 	private void selectProduct() {
 		System.out.println("Enter Slot code: ");
 		String userChoice = userInput.nextLine();
-		// TODO
 		// run loop through inventory to compare userInput to item.getSlot
 		//		if equal, run selectProduct with lowercase check
 		//		if not equal, ask again
 		// vm1.selectProduct();
+		boolean isValidSlot = false;
+		while (!isValidSlot){
+			if (userChoice.equalsIgnoreCase(vm1.getInventory().get))
+		}
 		System.out.println("balance: "+ vm1.getBalance());
 		System.out.println("choice sub.2");
 	}

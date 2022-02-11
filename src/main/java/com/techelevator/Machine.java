@@ -9,18 +9,22 @@ import java.util.Scanner;
 
 public class Machine {
 
-    private List<Item> inventoryB = new ArrayList<>();
+    private List<Item> inventory = new ArrayList<>();
     private File inputFile;
     // inputFile is empty bucket that can take in any file put in and use it to load the inventory.
     private BigDecimal balance = new BigDecimal("0.00");
 
     public Machine(File inputFile) {
         this.inputFile = inputFile;
-        inventoryB = loadInventory();
+        inventory = loadInventory();
     }
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
     }
 
     private List<Item> loadInventory() {
@@ -32,16 +36,16 @@ public class Machine {
                 String[] itemLine = lineOfText.split("\\|");
                 switch (itemLine[3]) {
                     case "Chip":
-                        inventoryB.add(new Chips(itemLine[0], itemLine[1], itemLine[2]));
+                        inventory.add(new Chips(itemLine[0], itemLine[1], itemLine[2]));
                         break;
                     case "Candy":
-                        inventoryB.add(new Candy(itemLine[0], itemLine[1], itemLine[2]));
+                        inventory.add(new Candy(itemLine[0], itemLine[1], itemLine[2]));
                         break;
                     case "Drink":
-                        inventoryB.add(new Drinks(itemLine[0], itemLine[1], itemLine[2]));
+                        inventory.add(new Drinks(itemLine[0], itemLine[1], itemLine[2]));
                         break;
                     case "Gum":
-                        inventoryB.add(new Gum(itemLine[0], itemLine[1], itemLine[2]));
+                        inventory.add(new Gum(itemLine[0], itemLine[1], itemLine[2]));
                         break;
                     default:
                         break;
@@ -51,11 +55,11 @@ public class Machine {
         } catch (FileNotFoundException exception) {
             System.out.println("File not found");
         }
-        return inventoryB;
+        return inventory;
     }
 
     public void displayInventory() {
-        for (Item unit : inventoryB) {
+        for (Item unit : inventory) {
             System.out.println(unit);
         }
 

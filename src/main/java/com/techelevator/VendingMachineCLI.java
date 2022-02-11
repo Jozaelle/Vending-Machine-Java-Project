@@ -1,17 +1,21 @@
 package com.techelevator;
 
+import javax.swing.plaf.metal.MetalCheckBoxIcon;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
+	private Scanner userInput = new Scanner(System.in);
+	//public Inventory inventoryMaster= new Inventory();
+	private Machine vm1;
 
 	public VendingMachineCLI() {
-
+		File inputFile = new File("VendingMachine.txt");
+		vm1 = new Machine(inputFile);
 	}
 
-	private Scanner userInput = new Scanner(System.in);
-	public Inventory inventory= new Inventory();
+
 
 	public static void main(String[] args) {
 
@@ -22,12 +26,9 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
-		inventory.loadInventory();
-
+		//inventoryMaster.inventoryB =  inventoryMaster.loadInventory();
 		displayWelcomeMessage();
 		mainMenuUI();
-
-		// ToDo - Add Code here to show menu, etc.
 		userInput.close();
 	}
 
@@ -39,8 +40,6 @@ public class VendingMachineCLI {
 	}
 
 	public void mainMenuUI() {
-
-
 		boolean isValidChoice = false;
 		while (!isValidChoice) {
 			System.out.println("1. Display Items");
@@ -50,7 +49,8 @@ public class VendingMachineCLI {
 			String userChoice = userInput.nextLine();
 			switch (userChoice) {
 				case "1":
-					inventory.displayInventory();
+					//inventoryMaster.displayInventory();
+					vm1.displayInventory();
 					System.out.println("choice 1");
 					//isValidChoice = true;
 					break;
@@ -74,7 +74,6 @@ public class VendingMachineCLI {
 					break;
 			}
 		}
-
 	}
 
 	public void subMenu() {
@@ -107,8 +106,5 @@ public class VendingMachineCLI {
 					break;
 			}
 		}
-
-		//System.out.println(inventory);
 	}
-
 }

@@ -7,8 +7,8 @@ public class InventoryTest {
 
     public void inventory_function_test(){
 
-        @Test
-        Assert.assertArrayEquals();
+//        @Test
+//        Assert.assertArrayEquals();
     }
 
 }

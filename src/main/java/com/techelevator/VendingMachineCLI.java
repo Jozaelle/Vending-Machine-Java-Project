@@ -3,6 +3,7 @@ package com.techelevator;
 import javax.swing.plaf.metal.MetalCheckBoxIcon;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -79,20 +80,20 @@ public class VendingMachineCLI {
 	public void subMenu() {
 		boolean isValidChoice = false;
 		while (!isValidChoice) {
+			System.out.println("------------------------");
 			System.out.println("1. Feed Money");
 			System.out.println("2. Select Product");
 			System.out.println("3. Finish Transaction");
+			System.out.println("Please enter a choice: ");
+
 
 			String userChoice = userInput.nextLine();
 			switch (userChoice) {
 				case "1":
-					// call Feed Money
-					System.out.println("choice sub.1");
-					//isValidChoice = true;
+					feedMoney();
 					break;
 				case "2":
-					// display sub menu
-					System.out.println("choice sub.2");
+					selectProduct();
 					//isValidChoice = true;
 					break;
 				case "3":
@@ -106,5 +107,37 @@ public class VendingMachineCLI {
 					break;
 			}
 		}
+	}
+
+
+	private void feedMoney() {
+		boolean isWholeNumber = false;
+		double tempDouble = 0;
+		while(!isWholeNumber) {
+			System.out.println("How much would you like to deposit (whole bills only): ");
+			String userChoice = userInput.nextLine();
+			tempDouble = Double.parseDouble(userChoice);
+			if (tempDouble % 1 == 0) {
+				isWholeNumber = true;
+			} else {
+				System.out.println("Not a whole bill, please try again");
+			}
+		}
+		BigDecimal tempBigDecimal = new BigDecimal(tempDouble);
+		vm1.depositMoney(tempBigDecimal);
+		System.out.println("balance: "+ vm1.getBalance());
+		//isValidChoice = true;
+	}
+
+	private void selectProduct() {
+		System.out.println("Enter Slot code: ");
+		String userChoice = userInput.nextLine();
+		// TODO
+		// run loop through inventory to compare userInput to item.getSlot
+		//		if equal, run selectProduct with lowercase check
+		//		if not equal, ask again
+		// vm1.selectProduct();
+		System.out.println("balance: "+ vm1.getBalance());
+		System.out.println("choice sub.2");
 	}
 }

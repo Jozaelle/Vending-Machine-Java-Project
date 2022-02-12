@@ -3,6 +3,7 @@ package com.techelevator;
 import javax.swing.plaf.metal.MetalCheckBoxIcon;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -11,13 +12,13 @@ public class VendingMachineCLI {
 	//public Inventory inventoryMaster= new Inventory();
 	private Machine vm1;
 
-	public VendingMachineCLI() {
+	public VendingMachineCLI() throws IOException {
 		File inputFile = new File("VendingMachine.txt");
 		vm1 = new Machine(inputFile);
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		VendingMachineCLI cli = new VendingMachineCLI();
 		// import inventory file and set up items

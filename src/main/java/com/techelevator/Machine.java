@@ -1,10 +1,8 @@
 package com.techelevator;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,9 +14,11 @@ public class Machine {
     // inputFile is empty bucket that can take in any file put in and use it to load the inventory.
     private BigDecimal balance = new BigDecimal("0.00");
 
-    public Machine(File inputFile) {
+    public Machine(File inputFile) throws IOException {
         this.inputFile = inputFile;
         inventory = loadInventory();
+        File file= new File("log.txt");
+        file.createNewFile();
     }
 
     public BigDecimal getBalance() {
@@ -69,12 +69,14 @@ public class Machine {
 
     public BigDecimal depositMoney(BigDecimal amountToDeposit) {
         balance = balance.add(amountToDeposit);
+        audit("Feed Money", amountToDeposit, balance );
         return balance;
     }
 
     public void selectProduct(Item itemChosen){
         //return balance
         //get product
+
         BigDecimal itemPrice = new BigDecimal("0");
         for(Item item : inventory){
             if (item.equals(itemChosen)){
@@ -83,6 +85,7 @@ public class Machine {
                     System.out.println("*** " + item.getSound());
                     itemPrice = item.getPrice();
                     balance = balance.subtract(itemPrice);
+                    audit((item.getProductName() + " " + item.getSlot()), item.getPrice(), balance  );
                 } else if (item.getQuantity() <= 0){
                     System.out.println("SOLD OUT");
                 } else if (item.getPrice().compareTo(balance) >= 0){
@@ -118,12 +121,15 @@ public class Machine {
                change-=5;
                nickel++;
            }
+
+            audit("Give change ", balance,new BigDecimal("0") );
            balance=new BigDecimal("0");
             System.out.println("Return change");
             System.out.println("number of quarters " + quarter);
             System.out.println("number of dimes " + dime);
             System.out.println("number of nickels " + nickel);
             System.out.println("Balance is " + balance);
+
 
             //how would you convert this cleanly into BigDecimal
             //balance.remainderOf ???
@@ -150,8 +156,15 @@ public class Machine {
             e.printStackTrace();
         }
     }
+    public void audit(String label, BigDecimal modification, BigDecimal result  ) {
 
+        try (PrintWriter pw = new PrintWriter(new FileOutputStream("log.txt", true))) {
+            pw.println(LocalDateTime.now() + " " + label + " $" + modification + " $" + result);
 
+        } catch (FileNotFoundException e) {
+            System.out.println("Log file could not be found");
+        }
+    }
 }
 
 

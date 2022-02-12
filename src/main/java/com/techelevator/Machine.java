@@ -70,9 +70,26 @@ public class Machine {
         return balance;
     }
 
-    public void selectProduct(String slotChosen){
+    public void selectProduct(Item itemChosen){
         //return balance
         //get product
+        BigDecimal itemPrice = new BigDecimal("0");
+        for(Item item : inventory){
+            if (item.equals(itemChosen)){
+                if(item.getQuantity() >0 && item.getPrice().compareTo(balance) <= 0) {
+                    item.deincrementQuantity();
+                    System.out.println("*** " + item.getSound());
+                    itemPrice = item.getPrice();
+                    balance = balance.subtract(itemPrice);
+                } else if (item.getQuantity() <= 0){
+                    System.out.println("SOLD OUT");
+                } else if (item.getPrice().compareTo(balance) >= 0){
+                    System.out.println("INSUFFICIENT FUNDS");
+                }
+            }
+        }
+
+
     }
 
 }

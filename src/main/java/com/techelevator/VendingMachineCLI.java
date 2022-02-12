@@ -97,6 +97,7 @@ public class VendingMachineCLI {
 					break;
 				case "3":
 					// exit program
+					//TODO
 					System.out.println("choice sub.3");
 					isValidChoice = true;
 					break;
@@ -136,22 +137,23 @@ public class VendingMachineCLI {
 		// vm1.selectProduct();
 		boolean isValidSlot = false;
 		String userChoice= "";
+		Item itemChoice = null;
 		while (!isValidSlot) {
 			System.out.println("Enter Slot code: ");
 			userChoice = userInput.nextLine();
 			for (Item var : vm1.getInventory()) {
 				if (userChoice.equalsIgnoreCase(var.getSlot())) {
 					isValidSlot = true;
-
+					itemChoice = var;
+					break;
 				}
 			}
 			if(!isValidSlot){
 				System.out.println("Not Valid. Pick again.");
 			}
 		}
-		vm1.selectProduct(userChoice);
+		vm1.selectProduct(itemChoice);
 		System.out.println("balance: " + vm1.getBalance());
-		System.out.println("choice sub.2");
 	}
 
 }

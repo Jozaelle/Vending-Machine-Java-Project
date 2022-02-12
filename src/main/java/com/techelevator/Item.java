@@ -37,9 +37,16 @@ public class Item {
         return sound;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    public void deincrementQuantity(){
+        quantity--;
+    }
+
     @Override
     public String toString() {
-        return  getSlot() + " " + getProductName() + " "+ getPrice() ;
+        return  getSlot() + " " + getProductName() + " "+ getPrice() + " quantity: " + getQuantity() ;
     }
 }
 

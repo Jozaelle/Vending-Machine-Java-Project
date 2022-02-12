@@ -62,7 +62,11 @@ public class Machine {
 
     public void displayInventory() {
         for (Item unit : inventory) {
-            System.out.println(unit);
+            if (unit.getQuantity() <= 0){
+                System.out.println("SOLD OUT");
+            } else {
+                System.out.println(unit);
+            }
         }
 
     }
@@ -74,9 +78,6 @@ public class Machine {
     }
 
     public void selectProduct(Item itemChosen){
-        //return balance
-        //get product
-
         BigDecimal itemPrice = new BigDecimal("0");
         for(Item item : inventory){
             if (item.equals(itemChosen)){
@@ -91,13 +92,10 @@ public class Machine {
                 } else if (item.getPrice().compareTo(balance) >= 0){
                     System.out.println("INSUFFICIENT FUNDS");
                 }
-
             }
-
         }
-
-
     }
+
         public void makeChange(){
             int quarter=0;
             int dime=0;

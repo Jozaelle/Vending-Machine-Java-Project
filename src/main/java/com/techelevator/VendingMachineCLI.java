@@ -52,6 +52,7 @@ public class VendingMachineCLI {
 				case "1":
 					//inventoryMaster.displayInventory();
 					vm1.displayInventory();
+					System.out.println();
 					//System.out.println("choice 1");
 					//isValidChoice = true;
 					break;

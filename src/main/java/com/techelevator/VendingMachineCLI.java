@@ -51,23 +51,21 @@ public class VendingMachineCLI {
 				case "1":
 					//inventoryMaster.displayInventory();
 					vm1.displayInventory();
-					System.out.println("choice 1");
+					//System.out.println("choice 1");
 					//isValidChoice = true;
 					break;
 				case "2":
 					subMenu();
-					System.out.println("choice 2");
+					//System.out.println("choice 2");
 					//isValidChoice = true;
 					break;
 				case "3":
 					// exit program
-					System.out.println("choice 3");
+					//System.out.println("choice 3");
 					isValidChoice = true;
 					break;
 				case "4":
-					// generate sale report
-					System.out.println("*** generate sales report");
-					//isValidChoice = true;
+					vm1.salesReport();
 					break;
 				default:
 					System.out.println("Not a valid entry");
@@ -99,7 +97,7 @@ public class VendingMachineCLI {
 					// exit program
 					//TODO
 					vm1.makeChange();
-					System.out.println("choice sub.3");
+					//System.out.println("choice sub.3");
 					isValidChoice = true;
 					break;
 

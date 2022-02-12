@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Item {
 
+    public static final int STARTING_QUANTITY = 5;
     private String slot;
     private String productName;
     private BigDecimal price;
@@ -14,7 +15,7 @@ public class Item {
         this.slot=slot;
         this.productName= productName;
         this.price = new BigDecimal(price);
-        this.quantity = 5;
+        this.quantity = STARTING_QUANTITY;
     }
 
     public String getSlot() {

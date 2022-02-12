@@ -2,6 +2,8 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,14 +128,31 @@ public class Machine {
             //how would you convert this cleanly into BigDecimal
             //balance.remainderOf ???
 
+    }
+    public void salesReport(){
+        BigDecimal salesTotal = new BigDecimal("0");
+        int quantityItem = 0;
 
-
-
-
-
-
-
+        System.out.println("Generating Sales Report...");
+        for (Item item : inventory){
+            BigDecimal itemQuantity = new BigDecimal(0);
+            itemQuantity = BigDecimal.valueOf(Item.STARTING_QUANTITY - item.getQuantity());
+            salesTotal = salesTotal.add(item.getPrice().multiply(itemQuantity));
         }
+        //System.out.println(salesTotal);
+        try (PrintWriter printWriter = new PrintWriter("SalesReport.txt")){
+            for(Item item : inventory){
+                printWriter.println(item.getProductName() +" | "+ (Item.STARTING_QUANTITY - item.getQuantity()));
+            }
+            printWriter.println();
+            printWriter.println("**TOTAL SALES** $" + salesTotal);
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
+
 
 

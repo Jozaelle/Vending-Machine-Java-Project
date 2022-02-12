@@ -98,6 +98,7 @@ public class VendingMachineCLI {
 				case "3":
 					// exit program
 					//TODO
+					vm1.makeChange();
 					System.out.println("choice sub.3");
 					isValidChoice = true;
 					break;

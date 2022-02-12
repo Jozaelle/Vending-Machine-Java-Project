@@ -86,12 +86,54 @@ public class Machine {
                 } else if (item.getPrice().compareTo(balance) >= 0){
                     System.out.println("INSUFFICIENT FUNDS");
                 }
+
             }
+
         }
 
 
     }
+        public void makeChange(){
+            int quarter=0;
+            int dime=0;
+            int nickel=0;
+            //int change= Integer.valueOf(String.valueOf(balance.multiply(100.00)));
+            BigDecimal hundred= new BigDecimal("100");
+            BigDecimal tempBalance=balance.multiply(hundred);
+            int change= (tempBalance.intValue());
 
+
+           while (change>=25){
+               change-=25;
+               quarter++;
+
+           }
+           while (change>=10){
+               change-=10;
+               dime ++;
+           }
+           while (change>=5){
+               change-=5;
+               nickel++;
+           }
+           balance=new BigDecimal("0");
+            System.out.println("Return change");
+            System.out.println("number of quarters " + quarter);
+            System.out.println("number of dimes " + dime);
+            System.out.println("number of nickels " + nickel);
+            System.out.println("Balance is " + balance);
+
+            //how would you convert this cleanly into BigDecimal
+            //balance.remainderOf ???
+
+
+
+
+
+
+
+
+        }
 }
 
 
